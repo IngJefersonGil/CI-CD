@@ -12,7 +12,17 @@ permissions:
   id-token: write
 
 jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate HTML
+        run: test -f index.html
   deploy:
+    needs: validate
     runs-on: ubuntu-latest
 
     steps:
